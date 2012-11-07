@@ -1,0 +1,113 @@
+Test cases:
+    - RT pool
+        - request rt for passes
+        - first time, creates one
+        - keep track of usage
+    - Rendering passes:
+        - render quad
+        - render mesh
+        - transform feedback
+        - render to MRT
+    - Standard FX:
+        - resize/bilin
+    - Render Manager
+        - allow depth only passes! control that from the FBO manager
+        - States: blend, raster, etc
+        - render target binding management
+        - TAB: shifts though rendertarget viz, hooked as "vis-enabled"
+    - Resources
+        - Textures, buffers, etc
+        - Wrap for render targets
+    - Shader system
+        - Effects
+            - Sample API:
+                - cShader (type as an enum)
+                  cShader::FromText()
+                    - generate hash
+                  cShader::FromFile() : load file contents and call FromText
+                  cShader::SetDefines
+                    - lookup preprocessor support
+                  cShader::Compile: gen hash. if changed to current hash, compile
+                  cShader::SetUniform() : glm types + textures
+                  cShader::BindAttribute()
+                  cShader::ExtractAttributes() : private func. reads "in T N;" for vertex shaders. generates a map of names to IDs. A vertex buffer would use a name to bind data to an attrib
+                  
+                  cEffect : serial list of shaders & state
+                    - some state is fixed, some is variable.
+                  cEffect::Activate()
+                  cEffect::Shader(enum eShaderType) : access shader
+                  cEffect::SetShader(enum eShaderType, shader)
+                    - also bind some signals/slots, e.g. reload shader -> reload effect
+                  cEFfect::Link : compile all, if > 0 compiled, do link
+                  
+                  cShader::ReloadAssocEffects: hmmm. need a global list
+    - LiveConsole
+        - paste from clipboard
+        - open file dlgs for save/load
+    - ScreenshotRec
+        - Based on RT
+    - CUDA kernel + gl interop
+    - Error streams
+        - Multiple consoles
+    - Mesh data will always be arbitrary / custom!
+        - animated mesh, raw data v/vn/vt/more, etc
+        - procedural, based on 2D/ 3D grid data
+        - lines
+        - obj mesh
+        - That's why I need deferred...
+        
+    - Animation controller
+        - Hook MinFrame, MaxFrame, FPS, Paused, CurFrame console cmds
+        - Feed it elapsed time, get frame as float
+    - VAOs etc
+    - PBOs?
+    - FBOs?
+    - Viewports/MAtrices?
+    - Texture buffers?
+    - Cameras
+    - Keyboard/Mouse hooks, freeglut menu
+    - convenient file manager!
+        - Default paths, etc
+        - be able to fetch all data & close the file
+            - as a single string
+            - as \n-sep lines
+            - as a vector<char>
+    
+Libraries:
+    - json
+    - PyString
+    - OpenSubdiv
+    - images?
+    - assimp
+    - DONE: glm
+    - DONE: freeglut
+    - DONE: sigslots
+    - DONE: boost
+    - windows sdk? 
+    - Camera!
+    
+App/FW design:
+    App.OnInitCPU       : init *required* before graphics
+    App.OnInitGPU       : init required *after* graphics
+    App.OnDestroyCPU    : destroy after graphics kill
+    App.OnDestroyGPU    : destroy required *before* graphics kill
+    App.OnRender        : ONLY rendering passes.
+        - need a frame counter, for screenshot rec etc.
+    App.OnUpdate        : updates on CPU/GPU
+        - need elapsed time, for anim etc.
+    App.OnResize        : Realloc resources based on screen RTs
+    
+    
+High-level design
+    - all the variables that some standard App.derived functions might need, should be accesible via App. protected interface
+    
+    - Megaproject: includes everything + Glapp
+    - a new application creates an instance of glapp
+    - AppBase interface: on creation listens to events, has event methods, destruction disconnect etc
+    - Client inherits from appbase
+    - Start running glapp 
+    
+Interfacing math libs
+    
+Keep in mind:
+    - Use windows stuff as little as possible, and keep it encapsulated
