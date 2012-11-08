@@ -5,12 +5,12 @@ using namespace std;
 
 void cTestApp::InitGPU()
 {
-	cout<<"Initgpu"<<endl;
+	cout<<"InitGpu"<<endl;
 }
 
 void cTestApp::DestroyGPU()
 {
-	cout<<"DEstroygpu"<<endl;
+	cout<<"DestroyGpu"<<endl;
 }
 
 void cTestApp::InitCPU()
@@ -20,7 +20,7 @@ void cTestApp::InitCPU()
 
 void cTestApp::DestroyCPU()
 {
-	cout<<"DEstroyCpu"<<endl;
+	cout<<"DestroyCpu"<<endl;
 }
 
 void cTestApp::Update(const cUpdateEvt&)

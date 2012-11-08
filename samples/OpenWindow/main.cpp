@@ -13,7 +13,7 @@ int main(int argc, char ** argv)
 	// Open the window and run it
 	cGlutWindow win;
 	cGlutWindow::cCreationParams params;
-	params.mContextVersion = glm::ivec2(4,3);
+	params.mContextVersion = glm::ivec2(4,2);
 	win.Create(argc,argv,params);
 
 	// Destroy cpu-related data last
