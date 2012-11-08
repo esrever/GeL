@@ -3,6 +3,11 @@
 
 #include "TestApp.h"
 
+#include <core/blob.h>
+#include <glcore/globj.h>
+
+using namespace gel;
+
 int main(int argc, char ** argv)
 {
 	cTestApp app;

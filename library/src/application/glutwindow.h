@@ -5,19 +5,22 @@
 
 using namespace std;
 
-class cGlutWindow
+namespace gel
 {
-public:
-	struct cCreationParams
+	class cGlutWindow
 	{
-		cCreationParams();
-		int			mDisplayMode;
-		glm::ivec2	mContextVersion;
-		int			mContextFlags;
-		int			mContextProfile;
-		glm::ivec2	mWindowPosition;
-		glm::ivec2	mWindowSize;
-		string		mWindowTitle;
+	public:
+		struct cCreationParams
+		{
+			cCreationParams();
+			int			mDisplayMode;
+			glm::ivec2	mContextVersion;
+			int			mContextFlags;
+			int			mContextProfile;
+			glm::ivec2	mWindowPosition;
+			glm::ivec2	mWindowSize;
+			string		mWindowTitle;
+		};
+		void Create(int argc, char ** argv, const cCreationParams& params = cCreationParams());
 	};
-	void Create(int argc, char ** argv, const cCreationParams& params = cCreationParams());
-};
+}

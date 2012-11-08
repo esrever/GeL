@@ -88,6 +88,7 @@
     <ClCompile Include="src\application\glapp.cpp" />
     <ClCompile Include="src\application\glutwindow.cpp" />
     <ClCompile Include="src\file\filehelper.cpp" />
+    <ClCompile Include="src\shader\shaderman.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\application\appbase.h" />
@@ -95,7 +96,12 @@
     <ClInclude Include="src\application\events.h" />
     <ClInclude Include="src\application\glapp.h" />
     <ClInclude Include="src\application\glutwindow.h" />
+    <ClInclude Include="src\core\blob.h" />
     <ClInclude Include="src\file\filehelper.h" />
+    <ClInclude Include="src\glcore\globj.h" />
+    <ClInclude Include="src\shader\program.h" />
+    <ClInclude Include="src\shader\shader.h" />
+    <ClInclude Include="src\shader\shaderman.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

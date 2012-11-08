@@ -17,6 +17,7 @@
 *.suo
 *.filters
 *.user
+*.opensdf
 Debug/
 Release/
 intermediate-output/
