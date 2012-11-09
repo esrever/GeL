@@ -99,6 +99,7 @@
     <ClInclude Include="src\core\blob.h" />
     <ClInclude Include="src\file\filehelper.h" />
     <ClInclude Include="src\glcore\globj.h" />
+    <ClInclude Include="src\shader\pipeline.h" />
     <ClInclude Include="src\shader\program.h" />
     <ClInclude Include="src\shader\shader.h" />
     <ClInclude Include="src\shader\shaderman.h" />
