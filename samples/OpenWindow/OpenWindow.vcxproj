@@ -41,13 +41,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(GELPATH)\contrib\glm-0.9.3.4\glm;$(GELPATH)\contrib\boost\boost_1_51;$(GELPATH)\contrib;$(GELPATH)\contrib\freeglut\include;$(GELPATH)\contrib\glew-1.9.0\include;$(GELPATH)\library\src;$(IncludePath)</IncludePath>
+    <IncludePath>$(GELPATH)\contrib\glm-0.9.3.4;$(GELPATH)\contrib\boost\boost_1_51;$(GELPATH)\contrib;$(GELPATH)\contrib\freeglut\include;$(GELPATH)\contrib\glew-1.9.0\include;$(GELPATH)\library\src;$(IncludePath)</IncludePath>
     <LibraryPath>$(GELPATH)\contrib\boost\boost_1_51\lib;$(GELPATH)\\contrib\freeglut\lib;$(GELPATH)\contrib\glew-1.9.0\lib;$(LibraryPath)</LibraryPath>
     <ExecutablePath>$(GELPATH)\contrib\glew-1.9.0\bin;$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(GELPATH)\contrib\glm-0.9.3.4\glm;$(GELPATH)\contrib\boost\boost_1_51;$(GELPATH)\contrib;$(GELPATH)\contrib\freeglut\include;$(GELPATH)\contrib\glew-1.9.0\include;$(GELPATH)\library\src;$(IncludePath)</IncludePath>
+    <IncludePath>$(GELPATH)\contrib\glm-0.9.3.4;$(GELPATH)\contrib\boost\boost_1_51;$(GELPATH)\contrib;$(GELPATH)\contrib\freeglut\include;$(GELPATH)\contrib\glew-1.9.0\include;$(GELPATH)\library\src;$(IncludePath)</IncludePath>
     <LibraryPath>$(GELPATH)\contrib\boost\boost_1_51\lib;$(GELPATH)\\contrib\freeglut\lib;$(GELPATH)\contrib\glew-1.9.0\lib;$(LibraryPath)</LibraryPath>
     <ExecutablePath>$(GELPATH)\contrib\glew-1.9.0\bin;$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>

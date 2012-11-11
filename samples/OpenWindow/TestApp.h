@@ -17,6 +17,7 @@ public:
 
 	void TestGPU();
 
-
+private:
 	void testFileHelper();
+	void testCamera();
 };

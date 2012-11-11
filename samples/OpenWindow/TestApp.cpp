@@ -3,6 +3,7 @@
 #include <file/filehelper.h>
 #include <shader/shader.h>
 #include <shader/program.h>
+#include <camera/camera.h>
 
 #include <iostream>
 using namespace std;
@@ -50,6 +51,7 @@ void cTestApp::Resize(const cResizeEvt&)
 void cTestApp::TestAll()
 {
 	testFileHelper();
+	testCamera();
 }
 
 //-------------------------------------------
@@ -80,6 +82,27 @@ void cTestApp::testFileHelper()
 		temp2 = *(reinterpret_cast<const cTemp * const>(blob.Data()));
 	}
 
+}
+
+void cTestApp::testCamera()
+{
+	cCamera cam;
+
+	cCamera::cViewParams viewParam, viewParamOut;
+
+	viewParam.mCenter = glm::vec3(1.0f, 2.0f, 3.0f);
+	viewParam.mEye = glm::vec3(0.0f, 2.0f, 1.0f);
+	viewParam.mUp = glm::vec3(0.0f, 1.0f, 0.0f);
+	cam.SetView(viewParam);
+	cCamera::ExtractParams( cam.View(), viewParamOut);
+
+	cCamera::cProjParams projParam, projParamOut;
+	projParam.mAspectRatio = 2.0f;
+	projParam.mFoV = 1.5f;
+	projParam.mNear = 0.1f;
+	projParam.mFar = 100.0f;
+	cam.SetProj(projParam);
+	cCamera::ExtractParams( cam.Proj(), projParamOut);
 }
 
 void cTestApp::TestGPU()
