@@ -5,6 +5,7 @@
 #include <string>
 #include <fstream>
 #include <streambuf>
+#include <algorithm>
 #include <pystring/pystring.h>
 
 namespace gel {
@@ -57,7 +58,7 @@ namespace gel {
 				if (fullpath != "")
 					return fullpath;
 			}
-			return "";
+			return FileExists(zFileName) ? zFileName : "";
 		}
 	}
 
@@ -82,12 +83,17 @@ namespace gel {
 	}
 	
 	//----------------------------------------------------------------------------------
-	bool cFileHelper::ReadBinFile(const std::string& zFilename, cBlob& zBlob)
+	bool cFileHelper::ReadBinFile(const std::string& zFilename, cVecBlob& zBlob)
 	{
 		std::string fname = FindFile(zFilename);
-		if( fname != "")
+		std::ifstream t(fname,std::ios::binary);
+		if( t.good())
 		{
-			
+			std::vector<char> buf;
+			std::istreambuf_iterator<char> ibegin(t);
+			std::istreambuf_iterator<char> iend;
+			std::copy( ibegin, iend, std::back_inserter(buf) );
+			zBlob = cVecBlob(buf);
 			return true;
 		}
 		else
@@ -97,10 +103,10 @@ namespace gel {
 	//----------------------------------------------------------------------------------
 	bool cFileHelper::WriteTextFile(const std::string& zFilename, const std::string& zText)
 	{
-		std::string fname = FindFile(zFilename);
-		if( fname != "")
+		std::ofstream t(zFilename);
+		if( t.good())
 		{
-			
+			t<<zText;
 			return true;
 		}
 		else
@@ -110,10 +116,11 @@ namespace gel {
 	//----------------------------------------------------------------------------------
 	bool cFileHelper::WriteBinFile(const std::string& zFilename, const cBlob& zBlob)
 	{
-		std::string fname = FindFile(zFilename);
-		if( fname != "")
+		std::ofstream t(zFilename,std::ios::binary);
+		if( t.good())
 		{
-			
+			const char * data = reinterpret_cast<const char *>(zBlob.Data());
+			t.write(data, zBlob.Length());
 			return true;
 		}
 		else

@@ -178,14 +178,17 @@ namespace gel
 		glutInitWindowSize(params.mWindowSize.x, params.mWindowSize.y);
 		glutCreateWindow(params.mWindowTitle.c_str());
 
-		err = glGetError();
+		glewExperimental=TRUE;
 		err=glewInit();
 		if(err!=GLEW_OK)
 		{
 			//Problem: glewInit failed, something is seriously wrong.
 			cout<<"glewInit failed, aborting."<<endl;
-			exit(1);
+			exit(-1);
 		}
+
+		// Need this to clear the buffer from the weird error
+		err = glGetError();
 
 		const GLubyte * versionStr = glGetString(GL_VERSION);
 		cout<<"OpenGL version: "<<versionStr<<endl;

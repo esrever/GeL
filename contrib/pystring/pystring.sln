@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pystring", "pystring.vcxproj", "{45111419-A260-46A3-BF70-281AF95C0E64}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{45111419-A260-46A3-BF70-281AF95C0E64}.Debug|Win32.ActiveCfg = Debug|Win32
+		{45111419-A260-46A3-BF70-281AF95C0E64}.Debug|Win32.Build.0 = Debug|Win32
+		{45111419-A260-46A3-BF70-281AF95C0E64}.Release|Win32.ActiveCfg = Release|Win32
+		{45111419-A260-46A3-BF70-281AF95C0E64}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

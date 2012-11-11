@@ -44,7 +44,7 @@ public:
 
 	/// File handling
 	bool ReadTextFile(const std::string& zFilename, std::string& zText);
-	bool ReadBinFile(const std::string& zFilename, cBlob& zBlob);
+	bool ReadBinFile(const std::string& zFilename, cVecBlob& zBlob);
 	bool WriteTextFile(const std::string& zFilename, const std::string& zText);
 	bool WriteBinFile(const std::string& zFilename, const cBlob& zBlob);
 	

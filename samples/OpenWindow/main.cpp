@@ -15,6 +15,10 @@ int main(int argc, char ** argv)
 	// Init cpu-related data first
 	cGlapp::get_mutable_instance().sigInitCPU();
 
+
+	// Run CPU tests
+	app.TestAll();
+
 	// Open the window and run it
 	cGlutWindow win;
 	cGlutWindow::cCreationParams params;

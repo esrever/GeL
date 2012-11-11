@@ -12,4 +12,11 @@ public:
 	virtual void Update(const gel::cUpdateEvt&);
 	virtual void Render(const gel::cRenderEvt&);
 	virtual void Resize(const gel::cResizeEvt&);
+
+	void TestAll();
+
+	void TestGPU();
+
+
+	void testFileHelper();
 };
