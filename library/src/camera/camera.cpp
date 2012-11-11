@@ -8,7 +8,7 @@ namespace gel
 	//---------------------------------------------------------------------------------------------
 	cCamera::cViewParams::cViewParams()
 		:mEye(z_axis)
-		,mCenter(0.0f,0.0f,0.0f)
+		,mViewDir(-z_axis)
 		,mUp(y_axis)
 	{
 	}
@@ -50,7 +50,7 @@ namespace gel
 		zParams.mUp = glm::vec3(zMat[1][0],zMat[1][1],zMat[1][2]);
 		glm::mat4 matInv = glm::inverse(zMat);
 		zParams.mEye = glm::vec3(matInv[3][0],matInv[3][1],matInv[3][2]);
-		zParams.mCenter = zParams.mEye - glm::vec3(matInv[2][0],matInv[2][1],matInv[2][2]);
+		zParams.mViewDir = - glm::vec3(matInv[2][0],matInv[2][1],matInv[2][2]);
 		
 	}
 
@@ -68,17 +68,5 @@ namespace gel
 		float const kk = (cc - 1.0f) / (cc + 1.0f);
 		zParams.mNear = (dd * (1.0f - kk)) / (2.0f * kk);
 		zParams.mFar = kk * zParams.mNear;
-	}
-
-	//---------------------------------------------------------------------------------------------
-	void cCamera::Translate(float zX, float zY, float zZ)
-	{
-
-	}
-
-	//---------------------------------------------------------------------------------------------
-	void cCamera::Rotate(float zAngle, const glm::vec3& zAxis)
-	{
-		
 	}
 }

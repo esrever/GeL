@@ -28,7 +28,7 @@ namespace gel
 		{
 			cViewParams();
 			glm::vec3 mEye;
-			glm::vec3 mCenter;
+			glm::vec3 mViewDir;
 			glm::vec3 mUp;
 		};
 
@@ -43,7 +43,7 @@ namespace gel
 		void SetView(const glm::mat4& zView)		{ mView = zView; ExtractParams(zView,mViewParams); }
 		void SetProj(const glm::mat4& zProj) 		{ mProj = zProj; ExtractParams(zProj,mProjParams); }
 
-		void SetView(const cViewParams& zParams)	{ mViewParams = zParams; mView = glm::lookAt(zParams.mEye, zParams.mCenter, zParams.mUp);}
+		void SetView(const cViewParams& zParams)	{ mViewParams = zParams; mView = glm::lookAt(zParams.mEye, zParams.mEye + zParams.mViewDir, zParams.mUp);}
 		void SetProj(const cProjParams& zParams)	{ mProjParams = zParams; mProj = glm::perspective(glm::degrees(zParams.mFoV), zParams.mAspectRatio, zParams.mNear, zParams.mFar);}
 		
 		// Accessors
@@ -60,8 +60,8 @@ namespace gel
 		void SetSpeed(float zMoveSpeed, float zRotSpeed)		 { mMoveSpeed = zMoveSpeed; mRotSpeed = zRotSpeed;}
 		void GetSpeed(float& zMoveSpeed, float& zRotSpeed) const { zMoveSpeed = mMoveSpeed; zRotSpeed = mRotSpeed;}
 
-		void Translate(float zX, float zY, float zZ);
-		void Rotate(float zAngle, const glm::vec3& zAxis);
+		virtual void Move(float zX, float zY, float zZ) {}
+		virtual void Rotate(float zAngle, const glm::vec3& zAxis){}
 
 	public:
 
@@ -69,7 +69,7 @@ namespace gel
 		static void ExtractParams(const glm::mat4& zMat, cViewParams& zParams);
 		static void ExtractParams(const glm::mat4& zMat, cProjParams& zParams);
 
-	private:
+	protected:
 
 		// matrices
 		glm::mat4 mWorld;

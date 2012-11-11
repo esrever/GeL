@@ -4,6 +4,7 @@
 #include <shader/shader.h>
 #include <shader/program.h>
 #include <camera/camera.h>
+#include <camera/freecam.h>
 
 #include <iostream>
 using namespace std;
@@ -86,11 +87,11 @@ void cTestApp::testFileHelper()
 
 void cTestApp::testCamera()
 {
-	cCamera cam;
+	cFreeCam cam;
 
 	cCamera::cViewParams viewParam, viewParamOut;
 
-	viewParam.mCenter = glm::vec3(1.0f, 2.0f, 3.0f);
+	viewParam.mViewDir = glm::normalize(glm::vec3(0.0f, 0.0f, 1.0f));
 	viewParam.mEye = glm::vec3(0.0f, 2.0f, 1.0f);
 	viewParam.mUp = glm::vec3(0.0f, 1.0f, 0.0f);
 	cam.SetView(viewParam);
@@ -103,6 +104,11 @@ void cTestApp::testCamera()
 	projParam.mFar = 100.0f;
 	cam.SetProj(projParam);
 	cCamera::ExtractParams( cam.Proj(), projParamOut);
+
+	cam.Move(1,2,3);
+	cCamera::ExtractParams( cam.View(), viewParamOut);
+	cam.Rotate(3.14159*0.5, glm::vec3(0,1,0));
+	cCamera::ExtractParams( cam.View(), viewParamOut);
 }
 
 void cTestApp::TestGPU()
