@@ -34,6 +34,6 @@ namespace gel
 
 	void cArcCam::Rotate(float zAngle, const glm::vec3& zAxis)
 	{
-
+		assert(false);
 	}
 }
