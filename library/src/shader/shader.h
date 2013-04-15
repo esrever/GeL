@@ -13,7 +13,7 @@ namespace gel
 		A shader for a specific stage ( vertex, pixel,geometry, etc)
 	*/
 	template<GLenum S>
-	class cShader : public cGlObj< cShader<S> >
+	class cShader : public cGlid< S >
 	{
 	public:
 
@@ -31,13 +31,6 @@ namespace gel
 			void ReleaseShaderCompiler( void );
 			GetShaderPrecisionFormat
 		*/
-
-	private:
-		// GLobj iface
-		friend class cGlObj< cShader<S> >;
-		static bool Valid(unsigned zId) { return glIsShader(zId) ? true : false;}
-		static unsigned Gen() { return glCreateShader(S);}
-		static void Del(unsigned zId) { glDeleteShader(zId);}
 
 	private:
 	};

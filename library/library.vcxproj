@@ -41,14 +41,16 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(GELPATH)\contrib\glm-0.9.3.4;$(GELPATH)\contrib\boost\boost_1_51;$(GELPATH)\contrib;$(GELPATH)\contrib\freeglut\include;$(GELPATH)\contrib\glew-1.9.0\include;$(GELPATH)\library\src;$(IncludePath)</IncludePath>
+    <IncludePath>$(GELPATH)\contrib\gli-0.4.1.0;$(GELPATH)\contrib\glm-0.9.4.3;$(GELPATH)\contrib\boost\boost_1_51;$(GELPATH)\contrib;$(GELPATH)\contrib\freeglut-2.8.1\include;$(GELPATH)\contrib\glew-1.9.0\include;$(GELPATH)\library\src;$(IncludePath)</IncludePath>
     <OutDir>$(GELPATH)\bin\$(Configuration)\</OutDir>
     <IntDir>$(GELPATH)\intermediate-output\$(ProjectName)\$(Configuration)\</IntDir>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(GELPATH)\contrib\glm-0.9.3.4;$(GELPATH)\contrib\boost\boost_1_51;$(GELPATH)\contrib;$(GELPATH)\contrib\freeglut\include;$(GELPATH)\contrib\glew-1.9.0\include;$(GELPATH)\library\src;$(IncludePath)</IncludePath>
+    <IncludePath>$(GELPATH)\contrib\gli-0.4.1.0;$(GELPATH)\contrib\glm-0.9.4.3;$(GELPATH)\contrib\boost\boost_1_51;$(GELPATH)\contrib;$(GELPATH)\contrib\freeglut-2.8.1\include;$(GELPATH)\contrib\glew-1.9.0\include;$(GELPATH)\library\src;$(IncludePath)</IncludePath>
     <OutDir>$(GELPATH)\bin\$(Configuration)\</OutDir>
     <IntDir>$(GELPATH)\intermediate-output\$(ProjectName)\$(Configuration)\</IntDir>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -126,6 +128,7 @@
     <ClInclude Include="src\camera\freecam.h" />
     <ClInclude Include="src\core\blob.h" />
     <ClInclude Include="src\file\filehelper.h" />
+    <ClInclude Include="src\glcore\error.h" />
     <ClInclude Include="src\glcore\globj.h" />
     <ClInclude Include="src\resource\vao.h" />
     <ClInclude Include="src\resource\vbo.h" />

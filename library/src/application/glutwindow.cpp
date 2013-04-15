@@ -193,9 +193,6 @@ namespace gel
 		const GLubyte * versionStr = glGetString(GL_VERSION);
 		cout<<"OpenGL version: "<<versionStr<<endl;
 
-		// Now that we've loaded GL, initialize gpu resources
-		cGlapp::get_mutable_instance().sigInitGPU();
-
 		/*
 		glm::ivec2 version;
 		glGetIntegerv(GL_MAJOR_VERSION,&version.x);
@@ -216,6 +213,10 @@ namespace gel
 		glutMotionFunc ( Motion ) ;
 		glutPassiveMotionFunc ( PassiveMotion ) ;
 		glutCloseFunc ( Close ) ;
+
+
+		// Now that we've loaded GL, initialize gpu resources
+		cGlapp::get_mutable_instance().sigInitGPU();
 
 		glutMainLoop();
 	}

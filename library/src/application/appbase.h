@@ -27,5 +27,6 @@ namespace gel
 		virtual void MouseMove(const cMouseMoveEvt&){};
 		virtual void MouseWheel(const cMouseWheelEvt&){};
 		virtual void Keyboard(const cKeyboardEvt&){};
+
 	};
 }
