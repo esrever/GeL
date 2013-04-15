@@ -12,5 +12,5 @@ out vec4 Color;
 
 void main()
 {
-	Color = In.Color * Luminance[In.Index];
+	Color = In.Color;
 }

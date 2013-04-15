@@ -13,7 +13,8 @@ out block
 
 void main()
 {
-	gl_Position = MVP * vec4(Position, 1.0);
+	vec3 off = 4*(vec3( gl_InstanceID % 4, gl_InstanceID / 4,0) - vec3(1.5,1.5,0));
+	gl_Position = MVP * vec4(Position+off, 1.0);
 	Out.Color = Color;
 	Out.Index = gl_VertexID / 4;
 }

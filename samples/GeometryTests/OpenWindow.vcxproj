@@ -43,13 +43,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(GELPATH)\contrib\glm-0.9.4.3;$(GELPATH)\contrib\boost\boost_1_51;$(GELPATH)\contrib;$(GELPATH)\contrib\freeglut-2.8.1\include;$(GELPATH)\contrib\glew-1.9.0\include;$(GELPATH)\library\src;$(IncludePath)</IncludePath>
-    <LibraryPath>$(GELPATH)\contrib\boost\boost_1_51\lib;$(GELPATH)\contrib\freeglut-2.8.1\lib\x86;$(GELPATH)\contrib\glew-1.9.0\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(GELPATH)\contrib\boost\boost_1_51\lib;$(GELPATH)\contrib\freeglut-2.8.1\lib\x86;$(GELPATH)\contrib\glew-1.9.0\lib;$(GELPATH)\contrib\pystring\lib;$(LibraryPath)</LibraryPath>
     <ExecutablePath>$(GELPATH)\contrib\glew-1.9.0\bin;$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(GELPATH)\contrib\glm-0.9.4.3;$(GELPATH)\contrib\boost\boost_1_51;$(GELPATH)\contrib;$(GELPATH)\contrib\freeglut-2.8.1\include;$(GELPATH)\contrib\glew-1.9.0\include;$(GELPATH)\library\src;$(IncludePath)</IncludePath>
-    <LibraryPath>$(GELPATH)\contrib\boost\boost_1_51\lib;$(GELPATH)\contrib\freeglut-2.8.1\lib\x86;$(GELPATH)\contrib\glew-1.9.0\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(GELPATH)\contrib\boost\boost_1_51\lib;$(GELPATH)\contrib\freeglut-2.8.1\lib\x86;$(GELPATH)\contrib\glew-1.9.0\lib;$(GELPATH)\contrib\pystring\lib;$(LibraryPath)</LibraryPath>
     <ExecutablePath>$(GELPATH)\contrib\glew-1.9.0\bin;$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -94,10 +94,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="TestApp.cpp" />
+    <ClCompile Include="IndexedGeom.cpp" />
+    <ClCompile Include="SimpleGeom.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="TestApp.h" />
+    <ClInclude Include="IndexedGeom.h" />
+    <ClInclude Include="SimpleGeom.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

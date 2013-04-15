@@ -1,7 +1,8 @@
 #include <application/glutwindow.h>
 #include <application/glapp.h>
 
-#include "TestApp.h"
+#include "SimpleGeom.h"
+#include "IndexedGeom.h"
 
 #include <core/blob.h>
 #include <glcore/globj.h>
@@ -10,7 +11,8 @@ using namespace gel;
 
 int main(int argc, char ** argv)
 {
-	cTestApp app;
+	cIndexedGeom app;
+	//cSimpleGeom app;
 
 	// Init cpu-related data first
 	cGlapp::get_mutable_instance().sigInitCPU();
