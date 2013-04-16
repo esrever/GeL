@@ -110,9 +110,6 @@
     <ClCompile Include="src\application\appbase.cpp" />
     <ClCompile Include="src\application\glapp.cpp" />
     <ClCompile Include="src\application\glutwindow.cpp" />
-    <ClCompile Include="src\camera\arccam.cpp" />
-    <ClCompile Include="src\camera\camera.cpp" />
-    <ClCompile Include="src\camera\freecam.cpp" />
     <ClCompile Include="src\core\blob.cpp" />
     <ClCompile Include="src\file\filehelper.cpp" />
     <ClCompile Include="src\resource\vao.cpp" />
@@ -126,9 +123,6 @@
     <ClInclude Include="src\application\events.h" />
     <ClInclude Include="src\application\glapp.h" />
     <ClInclude Include="src\application\glutwindow.h" />
-    <ClInclude Include="src\camera\arccam.h" />
-    <ClInclude Include="src\camera\camera.h" />
-    <ClInclude Include="src\camera\freecam.h" />
     <ClInclude Include="src\core\blob.h" />
     <ClInclude Include="src\file\filehelper.h" />
     <ClInclude Include="src\glcore\error.h" />

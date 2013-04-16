@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <boost/serialization/singleton.hpp>
 
 namespace gel
 {
@@ -12,7 +13,7 @@ namespace gel
 	struct cMouseMoveEvt;
 	struct cKeyboardEvt;
 
-	class cAppBase
+	class cAppBase : public boost::serialization::singleton<cAppBase>
 	{
 	public:
 		cAppBase();
