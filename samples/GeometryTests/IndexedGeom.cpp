@@ -70,15 +70,19 @@ void cIndexedGeom::InitGPU()
 	gel::checkError("ShaderInit");
 
 	shvert.Gen();
-	shvert.LoadTextFile("shader.vert");
+	shvert.LoadTextFile(RootPath() + "\\samples\\media\\shaders\\simple_geom.vert");
 	gel::checkError("shvert");
 	shfrag.Gen();
-	shfrag.LoadTextFile("shader.frag");
+	shfrag.LoadTextFile(RootPath() + "\\samples\\media\\shaders\\simple_geom.frag");
 	gel::checkError("shfrag");
 	shprog.Gen();
 	shprog.Attach(shvert);
 	shprog.Attach(shfrag);
 	shprog.Link();
+
+	int param=0;
+	glGetProgramiv(shprog.Id(),GL_ACTIVE_UNIFORMS,&param);
+	g_UniformMVP = glGetUniformLocation(shprog.Id(), "MVP");
 
 	glBindAttribLocation(shprog.Id(), ATTR_POS, "Position");
 	glBindAttribLocation(shprog.Id(), ATTR_COL, "Color");
@@ -87,8 +91,6 @@ void cIndexedGeom::InitGPU()
 	gel::checkError("shprog");
 
 	g_ProgramName = shprog.Id();
-
-	g_UniformMVP = glGetUniformLocation(shprog.Id(), "MVP");
 
 	gel::checkError("uniform");
 
@@ -110,8 +112,8 @@ void cIndexedGeom::DestroyGPU()
 void cIndexedGeom::Render(const cRenderEvt&)
 {
 	// Compute the MVP (Model View Projection matrix)
-	glm::mat4 Projection = glm::perspective(45.0f, 4.0f / 3.0f, 0.1f, 100.0f);
-	glm::vec3 eye = glm::vec3(0,0,-30);
+	glm::mat4 Projection = glm::perspective(45.0f, 4.0f / 4.0f, 0.1f, 100.0f);
+	glm::vec3 eye = glm::vec3(0,0,-3);
 	glm::vec3 center = glm::vec3(0,0,0);
 	glm::vec3 up = glm::vec3(0,1,0);
 	glm::mat4 View = glm::lookAt(eye,center,up);
@@ -143,8 +145,8 @@ void cIndexedGeom::Render(const cRenderEvt&)
 	glBindVertexArray(g_VertexArray);
 
 	gel::checkError("BindVertArray");
-	glDrawElements(GL_TRIANGLES,g_NumElements,GL_UNSIGNED_INT,0);
-	//glDrawElementsInstanced(GL_TRIANGLES,g_NumElements,GL_UNSIGNED_INT,0, 16);
+	//glDrawElements(GL_TRIANGLES,g_NumElements,GL_UNSIGNED_INT,0);
+	glDrawElementsInstanced(GL_TRIANGLES,g_NumElements,GL_UNSIGNED_INT,0, 16);
 	//glDrawElementsInstancedBaseInstance(GL_TRIANGLES,g_NumElements,GL_UNSIGNED_INT,0, 16,1);
 	gel::checkError("DrawElements");
 

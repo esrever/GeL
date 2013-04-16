@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 namespace gel
 {
 	struct cUpdateEvt;
@@ -27,6 +29,11 @@ namespace gel
 		virtual void MouseMove(const cMouseMoveEvt&){};
 		virtual void MouseWheel(const cMouseWheelEvt&){};
 		virtual void Keyboard(const cKeyboardEvt&){};
+
+		const std::string& RootPath() const {return mRootPath;}
+	protected:
+
+		std::string mRootPath;
 
 	};
 }

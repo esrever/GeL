@@ -28,22 +28,26 @@ void cSimpleGeom::InitGPU()
 	g_SimpleElementNum = g_NumElements;
 	std::vector<glm::vec3> posSimple(g_NumElements);
 	std::vector<glm::u8vec4> colSimple(g_NumElements);
+	std::vector<glm::vec4> fcolSimple(g_NumElements);
 
 	for(GLuint i=0;i<g_SimpleElementNum;++i)
 	{
 		posSimple.at(i) = PositionData[ElementData[i]];
 		colSimple.at(i) = ColorData[ElementData[i]];
+		fcolSimple.at(i) = fColorData[ElementData[i]];
 	}
 
 	glGenBuffers(1,&g_ArrayBufferPos);
-	glGenBuffers(1,&g_ArrayBufferCol);
 	glBindBuffer(GL_ARRAY_BUFFER, g_ArrayBufferPos);
 	glBufferData(GL_ARRAY_BUFFER, g_SimpleElementNum*sizeof(glm::vec3), &posSimple.front(), GL_STATIC_DRAW);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 	gel::checkError("ArrayBufferPos");
 
+	glGenBuffers(1,&g_ArrayBufferCol);
 	glBindBuffer(GL_ARRAY_BUFFER, g_ArrayBufferCol);
 	glBufferData(GL_ARRAY_BUFFER, g_SimpleElementNum*sizeof(glm::u8vec4), &colSimple.front(), GL_STATIC_DRAW);
+	//glBufferData(GL_ARRAY_BUFFER, g_SimpleElementNum*sizeof(glm::vec4), &fcolSimple.front(), GL_STATIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 	gel::checkError("ArrayBufferCol");
@@ -57,6 +61,7 @@ void cSimpleGeom::InitGPU()
 
 	glBindBuffer(GL_ARRAY_BUFFER, g_ArrayBufferCol);
 	glVertexAttribPointer(eVertexAttrib::ATTR_COL, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(glm::u8vec4), BUFFER_OFFSET(0));
+	//glVertexAttribPointer(eVertexAttrib::ATTR_COL, 4, GL_FLOAT, GL_FALSE, sizeof(glm::vec4), BUFFER_OFFSET(0));
 	glEnableVertexAttribArray(eVertexAttrib::ATTR_COL);
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -70,10 +75,10 @@ void cSimpleGeom::InitGPU()
 	gel::checkError("ShaderInit");
 
 	shvert.Gen();
-	shvert.LoadTextFile("shader.vert");
+	shvert.LoadTextFile(RootPath() + "\\samples\\media\\shaders\\simple_geom.vert");
 	gel::checkError("shvert");
 	shfrag.Gen();
-	shfrag.LoadTextFile("shader.frag");
+	shfrag.LoadTextFile(RootPath() + "\\samples\\media\\shaders\\simple_geom.frag");
 	gel::checkError("shfrag");
 	shprog.Gen();
 	shprog.Attach(shvert);
@@ -109,8 +114,8 @@ void cSimpleGeom::DestroyGPU()
 void cSimpleGeom::Render(const cRenderEvt&)
 {
 	// Compute the MVP (Model View Projection matrix)
-	glm::mat4 Projection = glm::perspective(45.0f, 4.0f / 3.0f, 0.1f, 100.0f);
-	glm::vec3 eye = glm::vec3(0,0,-30);
+	glm::mat4 Projection = glm::perspective(45.0f, 4.0f / 4.0f, 0.1f, 100.0f);
+	glm::vec3 eye = glm::vec3(0,0,-7);
 	glm::vec3 center = glm::vec3(0,0,0);
 	glm::vec3 up = glm::vec3(0,1,0);
 	glm::mat4 View = glm::lookAt(eye,center,up);
@@ -118,7 +123,7 @@ void cSimpleGeom::Render(const cRenderEvt&)
 	glm::mat4 MVP = Projection * View * Model;
 
 	// Set the display viewport
-	glViewport(0, 0, 600, 600);
+	glViewport(0, 0, 1024, 1024);
 	gel::checkError("Viewport");
 
 	// Clear color buffer with black
@@ -142,8 +147,8 @@ void cSimpleGeom::Render(const cRenderEvt&)
 	glBindVertexArray(g_VertexArray);
 
 	gel::checkError("BindVertArray");
-	glDrawArrays(GL_TRIANGLES, 0, g_SimpleElementNum);
-	//glDrawArraysInstanced(GL_TRIANGLES, 0, g_SimpleElementNum, 16);
+	//glDrawArrays(GL_TRIANGLES, 0, g_SimpleElementNum);
+	glDrawArraysInstanced(GL_TRIANGLES, 0, g_SimpleElementNum, 16);
 	gel::checkError("DrawArrays");
 
 	// Unbind program

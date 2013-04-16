@@ -1,6 +1,8 @@
 #include "appbase.h"
 #include "glapp.h"
 
+#include <windows.h>
+
 namespace gel
 {
 
@@ -19,6 +21,10 @@ namespace gel
 		CONNECT_BOILERPLATE(MouseWheel);
 		CONNECT_BOILERPLATE(Keyboard);
 	#undef CONNECT_BOILERPLATE
+
+		char rootpath[MAX_PATH];
+		GetEnvironmentVariableA("GELPATH",rootpath,MAX_PATH);
+		mRootPath = rootpath;
 	}
 
 	cAppBase::~cAppBase()

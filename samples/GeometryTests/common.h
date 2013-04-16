@@ -35,6 +35,19 @@ glm::u8vec4 const ColorData[VertexCount] =
 	glm::u8vec4(128, 128, 255, 255)
 };
 
+GLsizeiptr const fColorSize = VertexCount * sizeof(glm::vec4);
+glm::vec4 const fColorData[VertexCount] =
+{
+	glm::vec4(1,   0.1,   0.1, 1),
+	glm::vec4(1, 1,   0.1, 1),
+	glm::vec4(  0.1, 1,   0.1, 1),
+	glm::vec4(  0.1,   0.1, 1, 1),
+	glm::vec4(1, 0.5, 0.5, 1),
+	glm::vec4(1, 1, 0.5, 1),
+	glm::vec4(0.5, 1, 0.5, 1),
+	glm::vec4(0.5, 0.5, 1, 1)
+};
+
 enum eVertexAttrib
 {
 	ATTR_POS = 0,
