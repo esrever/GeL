@@ -15,8 +15,9 @@ void main()
 {
 	// Assume 16 instances
 	vec2 off = 2*vec2( gl_InstanceID & 3, gl_InstanceID >> 2);
-	Position.xy = (Position.xy + off)/4;
-	gl_Position = MVP * vec4(Position, 1.0);
+	vec3 wpos = Position;
+	wpos.xy = (wpos.xy + off)/4;
+	gl_Position = MVP * vec4(wpos, 1.0);
 	Out.Color = Color;
 	//Out.Color.xyz = Position.z;
 }
