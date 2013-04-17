@@ -9,6 +9,8 @@
 #include <application/glapp.h>
 #include <application/events.h>
 
+#include <AntTweakBar.h>
+
 using namespace std;
 //using namespace boost::chrono;
 
@@ -39,13 +41,13 @@ namespace gel
 		// TODO: get time from boost::chrono here. if first time, set to zero
 		//static high_resolution_clock clock;
 		//cout<<clock.now()<<endl;
-
 		cGlapp::get_mutable_instance().sigUpdate(evt);
 		glutPostRedisplay();
 	}
 
 	static void Key(unsigned char key, int x, int y)
 	{
+		TwEventKeyboardGLUT(key,x,y);
 		if(key==27) {glutLeaveMainLoop();return;}
 		cKeyboardEvt evt;
 		evt.key = key;
@@ -59,6 +61,7 @@ namespace gel
 
 	static void Special(int key, int x, int y)
 	{
+		TwEventSpecialGLUT(key,x,y);
 		cKeyboardEvt evt;
 		evt.key = key;
 		evt.special = true;
@@ -95,6 +98,7 @@ namespace gel
 
 	static void Mouse(int button, int updown, int x, int y)
 	{
+		TwEventMouseButtonGLUT(button,updown,x,y);
 		cMouseBtnEvt evt;
 		cMouseMoveEvt mevt;
 		switch (button)
@@ -115,6 +119,7 @@ namespace gel
 
 	static void Motion(int x, int y)
 	{
+		TwEventMouseMotionGLUT(x,y);
 		cMouseMoveEvt evt;
 		evt.x = x;
 		evt.y = y;
@@ -124,6 +129,7 @@ namespace gel
 
 	static void PassiveMotion(int x, int y)
 	{
+		TwEventMouseMotionGLUT(x,y);
 		cMouseMoveEvt evt;
 		evt.x = x;
 		evt.y = y;
@@ -147,6 +153,7 @@ namespace gel
 
 	static void Close()
 	{
+		TwTerminate();
 		cGlapp::get_mutable_instance().sigDestroyGPU();
 		cGlapp::get_mutable_instance().sigDestroyCPU();
 	}
@@ -177,6 +184,8 @@ namespace gel
 		glutInitWindowPosition(params.mWindowPosition.x, params.mWindowPosition.y);
 		glutInitWindowSize(params.mWindowSize.x, params.mWindowSize.y);
 		glutCreateWindow(params.mWindowTitle.c_str());
+
+		TwInit(TW_OPENGL_CORE, NULL);
 
 		glewExperimental=TRUE;
 		err=glewInit();
@@ -213,6 +222,7 @@ namespace gel
 		glutMotionFunc ( Motion ) ;
 		glutPassiveMotionFunc ( PassiveMotion ) ;
 		glutCloseFunc ( Close ) ;
+		TwGLUTModifiersFunc(glutGetModifiers);
 
 
 		// Now that we've loaded GL, initialize gpu resources

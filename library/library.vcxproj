@@ -41,13 +41,13 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(GELPATH)\contrib\gli-0.4.1.0;$(GELPATH)\contrib\glm-0.9.4.3;$(GELPATH)\contrib\boost\boost_1_51;$(GELPATH)\contrib;$(GELPATH)\contrib\freeglut-2.8.1\include;$(GELPATH)\contrib\glew-1.9.0\include;$(GELPATH)\library\src;$(IncludePath)</IncludePath>
+    <IncludePath>$(GELPATH)\contrib\FreeImage\Dist;$(GELPATH)\contrib\gli-0.4.1.0;$(GELPATH)\contrib\glm-0.9.4.3;$(GELPATH)\contrib\boost\boost_1_51;$(GELPATH)\contrib;$(GELPATH)\contrib\freeglut-2.8.1\include;$(GELPATH)\contrib\glew-1.9.0\include;$(GELPATH)\library\src;$(GELPATH)\contrib\anttweakbar\include;$(IncludePath)</IncludePath>
     <OutDir>$(GELPATH)\bin\$(Configuration)\</OutDir>
     <IntDir>$(GELPATH)\intermediate-output\$(ProjectName)\$(Configuration)\</IntDir>
     <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(GELPATH)\contrib\gli-0.4.1.0;$(GELPATH)\contrib\glm-0.9.4.3;$(GELPATH)\contrib\boost\boost_1_51;$(GELPATH)\contrib;$(GELPATH)\contrib\freeglut-2.8.1\include;$(GELPATH)\contrib\glew-1.9.0\include;$(GELPATH)\library\src;$(IncludePath)</IncludePath>
+    <IncludePath>$(GELPATH)\contrib\FreeImage\Dist;$(GELPATH)\contrib\gli-0.4.1.0;$(GELPATH)\contrib\glm-0.9.4.3;$(GELPATH)\contrib\boost\boost_1_51;$(GELPATH)\contrib;$(GELPATH)\contrib\freeglut-2.8.1\include;$(GELPATH)\contrib\glew-1.9.0\include;$(GELPATH)\library\src;$(GELPATH)\contrib\anttweakbar\include;$(IncludePath)</IncludePath>
     <OutDir>$(GELPATH)\bin\$(Configuration)\</OutDir>
     <IntDir>$(GELPATH)\intermediate-output\$(ProjectName)\$(Configuration)\</IntDir>
     <LibraryPath>$(LibraryPath)</LibraryPath>
@@ -116,6 +116,7 @@
     <ClCompile Include="src\resource\vbo.cpp" />
     <ClCompile Include="src\shader\program.cpp" />
     <ClCompile Include="src\shader\shaderman.cpp" />
+    <ClCompile Include="src\utility\fileutils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\application\appbase.h" />
@@ -134,6 +135,8 @@
     <ClInclude Include="src\shader\shader.h" />
     <ClInclude Include="src\shader\shader.hpp" />
     <ClInclude Include="src\shader\shaderman.h" />
+    <ClInclude Include="src\utility\fileutils.h" />
+    <ClInclude Include="src\utility\stringutils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
