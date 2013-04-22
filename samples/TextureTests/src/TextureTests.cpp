@@ -131,14 +131,11 @@ void cTextureTests::Resize(const gel::cResizeEvt& evt)
 
 void cTextureTests::LoadTexture(const std::string& zFilename)
 {
-	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 	glActiveTexture(GL_TEXTURE0 + g_CurTextureUnit);
 	glBindTexture(GL_TEXTURE_2D, g_TextureNames[g_CurTextureUnit]);
 
 	LoadImageData(zFilename);
 	//LoadDDS(zFilename);
-
-	glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
 }
 
 bool cTextureTests::LoadImageData(const std::string& zFilename)
@@ -165,12 +162,9 @@ bool cTextureTests::LoadImageData(const std::string& zFilename)
 		return false;
 
 	//retrieve the image data
-	BYTE* bits = FreeImage_GetBits(dib);
 	unsigned width = FreeImage_GetWidth(dib);
 	unsigned height = FreeImage_GetHeight(dib);
 	unsigned bpp = FreeImage_GetBPP(dib);
-	unsigned line = FreeImage_GetLine(dib);
-	unsigned pitch = FreeImage_GetPitch(dib);
 	FREE_IMAGE_COLOR_TYPE ctype = FreeImage_GetColorType(dib);
 
 	unsigned components = 0;
@@ -200,20 +194,21 @@ bool cTextureTests::LoadImageData(const std::string& zFilename)
 			dibconv = FreeImage_ConvertTo32Bits(dib);
 			break;
 	}
+	FreeImage_Unload(dib);
 
-	BYTE* bits2 = FreeImage_GetBits(dibconv);
+	BYTE* bits = FreeImage_GetBits(dibconv);
 
 	unsigned levels = gel::pot::NearestPowUp(std::max(width,height))+1;
-	
-	//store the texture data for OpenGL use
+
+	// GetBits returns 16-bit aligned data
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
 	glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, width, height,
-		0, textureFormat, GL_UNSIGNED_BYTE, bits2);
+		0, textureFormat, GL_UNSIGNED_BYTE, bits);
 	gel::checkError("LoadTexture");
 	glGenerateMipmap(GL_TEXTURE_2D);
 	gel::checkError("GenMipmaps");
 
 	//Free FreeImage's copy of the data
-	FreeImage_Unload(dib);
 	FreeImage_Unload(dibconv);
 
 	glutReshapeWindow(width,height);
